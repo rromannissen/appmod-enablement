@@ -1,7 +1,9 @@
-
 applicationName: gateway
+targetEnvironment: dev
+version: "1.0.0"
 port: 8080
 targetPort: 8080
+routes: []
 deploymentStrategy:
   type: RollingUpdate
   rollingMaxSurge: 25%
@@ -13,5 +15,5 @@ health:
   probeDelay: 5
   probePeriod: 10
   probeTimeout: 2
-imageURL: "quay.io/rromanni/gateway:fe-0.1"
+imageURL: "quay.io/rromanni/gateway:ame-0.1"
 env: []

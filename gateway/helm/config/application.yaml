@@ -4,7 +4,7 @@ services:
   inventory:
     url: http://inventory:8080/products
   customers:
-    url: http://customers:8080/customers
+    url: http://customers:8080/customers-tomcat-0.0.1-SNAPSHOT/customers
 
 hystrix:
   command:

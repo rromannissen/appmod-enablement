@@ -55,25 +55,24 @@ spec:
           {{- end }}
         {{- with .Values.health }}
         readinessProbe:
-         httpGet:
-           path: {{ .readinessEndpoint }}
-           port: {{ $.Values.port }}
-         initialDelaySeconds: {{ .probeDelay }}
-         timeoutSeconds: {{ .probeTimeout }}
+          httpGet:
+            path: {{ .readinessEndpoint }}
+            port: {{ $.Values.port }}
+          initialDelaySeconds: {{ .probeDelay }}
+          timeoutSeconds: {{ .probeTimeout }}
         livenessProbe:
-         httpGet:
-           path: {{ .livenessEndpoint }}
-           port: {{ $.Values.port }}
-         periodSeconds: {{ .probePeriod }}
-         initialDelaySeconds: {{ .probeDelay }}
-         timeoutSeconds: {{ .probeTimeout }}
+          httpGet:
+            path: {{ .livenessEndpoint }}
+            port: {{ $.Values.port }}
+          periodSeconds: {{ .probePeriod }}
+          initialDelaySeconds: {{ .probeDelay }}
+          timeoutSeconds: {{ .probeTimeout }}
         {{- end }}
         volumeMounts:
-        - name: {{ .Values.applicationName }}-secret-volume
-          mountPath: /deployments/config
+        - name: {{ .Values.applicationName }}-nginx-volume
+          mountPath: /etc/nginx/nginx.conf
+          subPath: nginx.conf
       volumes:
-        - name: {{ .Values.applicationName }}-secret-volume
-          secret:
-            secretName: {{ .Values.applicationName }}-secret
-
-# /usr/local/tomcat/webapps/ROOT/WEB-INF/classes/persistence.properties
+        - name: {{ .Values.applicationName }}-nginx-volume
+          configMap:
+            name: {{ .Values.applicationName }}-nginx-config

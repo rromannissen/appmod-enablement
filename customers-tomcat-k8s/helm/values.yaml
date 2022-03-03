@@ -1,26 +1,19 @@
-# Default values for java-backend.
-# This is a YAML-formatted file.
-# Declare variables to be passed into your templates.
-
-applicationName: default
+applicationName: customers
 targetEnvironment: dev
 version: "1.0.0"
 port: 8080
 targetPort: 8080
 routes: []
 deploymentStrategy:
-  type: Rolling
-  timeout: 300
-  rollingUpdatePeriod: 1
-  rollingInterval: 1
+  type: RollingUpdate
   rollingMaxSurge: 25%
   rollingMaxUnavailable: 20%
 replicaCount: 1
 health:
-  livenessEndpoint: /health
-  readinessEndpoint: /health
-  probeDelay: 30
-  probePeriod: 10
-  probeTimeout: 2
+  livenessEndpoint: /customers-tomcat-0.0.1-SNAPSHOT/actuator/health
+  readinessEndpoint: /customers-tomcat-0.0.1-SNAPSHOT/actuator/health
+  probeDelay: 180
+  probePeriod: 180
+  probeTimeout: 20
+imageURL: "quay.io/rromanni/customerstomcat:ame-0.9"
 env: []
-imageURL: ""
