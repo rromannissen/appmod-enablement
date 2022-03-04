@@ -15,5 +15,5 @@ health:
   probeDelay: 180
   probePeriod: 180
   probeTimeout: 20
-imageURL: "quay.io/rromanni/customerstomcat:ame-0.9"
+imageURL: "quay.io/rromanni/customerstomcat:ame-0.11"
 env: []

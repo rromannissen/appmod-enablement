@@ -70,10 +70,12 @@ spec:
         {{- end }}
         volumeMounts:
         - name: {{ .Values.applicationName }}-secret-volume
-          mountPath: /deployments/config
+          mountPath: /opt/jws-5.6/tomcat/lib/persistence.properties
+          subPath: persistence.properties
       volumes:
         - name: {{ .Values.applicationName }}-secret-volume
           secret:
             secretName: {{ .Values.applicationName }}-secret
-
-# /usr/local/tomcat/webapps/ROOT/WEB-INF/classes/persistence.properties
+            items:
+              - key: persistence.properties
+                path: persistence.properties
