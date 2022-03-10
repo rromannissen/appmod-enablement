@@ -29,12 +29,12 @@ spec:
         deployment: {{ .Values.applicationName }}
         app: {{ .Values.applicationName }}
       annotations:
-        rollme: {{ randAlphaNum 5 | quote }}    
+        rollme: {{ randAlphaNum 5 | quote }}
     spec:
       terminationGracePeriodSeconds: {{ .Values.terminationGracePeriod | default 60 }}
       containers:
       - name: {{ .Values.applicationName }}
-        image: '{{ .Values.imageURL }}'
+        image: '{{ .Values.imageURL }}:{{ .Values.version }}'
         imagePullPolicy: Always
         ports:
         - name: http

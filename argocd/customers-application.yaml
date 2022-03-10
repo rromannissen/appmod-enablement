@@ -1,17 +1,17 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: customers
+  name: customers-tomcat
   namespace: argocd
 spec:
   project: default
   source:
-    repoURL: https://github.com/rromannissen/rhoar-microservices-demo.git
-    targetRevision: master
-    path: customers/config
+    repoURL: https://github.com/rromannissen/appmod-enablement.git
+    targetRevision: main
+    path: customers-tomcat-k8s/helm
   destination:
     server: https://kubernetes.default.svc
-    namespace: order-management
+    namespace: retail
   syncPolicy:
     automated:
       prune: true

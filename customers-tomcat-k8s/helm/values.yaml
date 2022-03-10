@@ -1,6 +1,6 @@
 applicationName: customers
 targetEnvironment: dev
-version: "1.0.0"
+version: "ame-0.11"
 port: 8080
 targetPort: 8080
 routes: []
@@ -15,5 +15,5 @@ health:
   probeDelay: 180
   probePeriod: 180
   probeTimeout: 20
-imageURL: "quay.io/rromanni/customerstomcat:ame-0.11"
+imageURL: "quay.io/rromanni/customerstomcat"
 env: []

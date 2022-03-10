@@ -6,12 +6,12 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/rromannissen/rhoar-microservices-demo.git
-    targetRevision: master
-    path: orders/config
+    repoURL: https://github.com/rromannissen/appmod-enablement.git
+    targetRevision: main
+    path: orders/helm
   destination:
     server: https://kubernetes.default.svc
-    namespace: order-management
+    namespace: retail
   syncPolicy:
     automated:
       prune: true
