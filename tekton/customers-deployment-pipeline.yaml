@@ -1,7 +1,7 @@
 apiVersion: tekton.dev/v1beta1
 kind: Pipeline
 metadata:
-  name: jdk-deployment-pipeline
+  name: customers-deployment-pipeline
 spec:
   params:
   - name: git-url
@@ -36,6 +36,8 @@ spec:
       taskRef:
         name: maven-with-subdir
       params:
+      - name: GOALS
+        value: package -P kubernetes
       - name: subdirectory
         value: source/$(params.app-subdir)
       workspaces:
@@ -46,7 +48,6 @@ spec:
         - build-artifact
       taskRef:
         name: buildah
-        kind: ClusterTask
       params:
       - name: IMAGE
         value: $(params.target-registry)/$(params.target-namespace)/$(params.app-subdir):$(tasks.clone-repository.results.short-commit)
