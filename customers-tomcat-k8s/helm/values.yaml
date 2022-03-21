@@ -1,6 +1,6 @@
 applicationName: customers
 targetEnvironment: dev
-version: "ame-0.11"
+version: "d3b6035"
 port: 8080
 targetPort: 8080
 routes: []
