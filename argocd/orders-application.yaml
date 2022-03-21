@@ -2,7 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: orders
-  namespace: argocd
+  namespace: retail
 spec:
   project: default
   source:
