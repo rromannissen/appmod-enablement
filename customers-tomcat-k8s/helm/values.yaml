@@ -15,5 +15,5 @@ health:
   probeDelay: 180
   probePeriod: 180
   probeTimeout: 20
-imageURL: "image-registry.openshift-image-registry.svc:5000/retail/customers"
+imageURL: "image-registry.openshift-image-registry.svc:5000/retail/customers-tomcat-k8s"
 env: []
