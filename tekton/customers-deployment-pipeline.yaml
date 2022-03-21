@@ -6,10 +6,10 @@ spec:
   params:
   - name: git-url
   - name: git-branch
-    default: master
+    default: main
   - name: app-subdir
   - name: target-namespace
-    default: order-management
+    default: retail
   - name: target-registry
     default: image-registry.openshift-image-registry.svc:5000
   workspaces:
@@ -37,7 +37,9 @@ spec:
         name: maven-with-subdir
       params:
       - name: GOALS
-        value: package -P kubernetes
+        value:
+          - "package"
+          - "-P kubernetes"
       - name: subdirectory
         value: source/$(params.app-subdir)
       workspaces:
@@ -48,6 +50,7 @@ spec:
         - build-artifact
       taskRef:
         name: buildah
+        kind: ClusterTask
       params:
       - name: IMAGE
         value: $(params.target-registry)/$(params.target-namespace)/$(params.app-subdir):$(tasks.clone-repository.results.short-commit)
