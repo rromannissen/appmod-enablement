@@ -6,7 +6,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/rromannissen/appmod-enablement.git
+    repoURL: https://gitea.apps.cluster-wk.dynamic.opentlc.com/rromannissen/customers.git
     targetRevision: main
     path: customers-tomcat-k8s/helm
   destination:

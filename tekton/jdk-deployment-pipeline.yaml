@@ -46,6 +46,7 @@ spec:
         - build-artifact
       taskRef:
         name: buildah
+        kind: ClusterTask
       params:
       - name: IMAGE
         value: $(params.target-registry)/$(params.target-namespace)/$(params.app-subdir):$(tasks.clone-repository.results.short-commit)
@@ -69,7 +70,7 @@ spec:
       - name: target-branch
         value: $(params.git-branch)
       - name: config-subdirectory
-        value: $(params.app-subdir)/config
+        value: $(params.app-subdir)/helm
       - name: git-root-directory
         value: source
       workspaces:
