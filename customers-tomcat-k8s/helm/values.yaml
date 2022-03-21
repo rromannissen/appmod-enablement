@@ -15,5 +15,5 @@ health:
   probeDelay: 180
   probePeriod: 180
   probeTimeout: 20
-imageURL: "quay.io/rromanni/customerstomcat"
+imageURL: "image-registry.openshift-image-registry.svc:5000/retail/customers"
 env: []
