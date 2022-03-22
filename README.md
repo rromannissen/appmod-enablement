@@ -25,6 +25,22 @@ This demo has been developed using the following setup:
 
 Other setups may work as well, but Tekton 0.28.x or later is required for the pipeline and tasks to work.
 
+## Manual deployment in OCP
+
+The *customers-tomcat-ocp* directory from this repository contains the Customers Tomcat application with all the required changes for it to run in OCP. Inside the *ocp* subdirectory there is also a manifests file with the definition of the required objects to deploy it manually in OCP. In order to do that, the application image will have to be built locally and pushed to the OCP internal registry. It is important to note that the application WAR artifact has to be built with the following command before building the application:
+
+```
+mvn clean package -P kubernetes
+```
+
+Using the *kubernetes* profile in the build is essential for the application to pick up the configuration file injected via a secret in the pod. That secret has to be also created manually with the following command from the *customers-tomcat-ocp* directory:
+
+```
+oc create secret generic customers-secret --from-file=src/main/resources/persistence.properties
+```
+
+Make sure that the configuration in the persistence.properties file points to the correct database when creating the secret.
+
 ## Deployment Pipeline in OCP
 
 As stated before, one of the main focus areas of this demo is to showcase a modern approach for CI/CD using a set of tools and practices around the GitOps paradigm. For that, a Deployment Pipeline for the Customers application has been developed using Tekton. The following diagram depicts all tasks to be executed by the pipeline and its interaction with external systems and tools:
@@ -104,7 +120,7 @@ oc patch serviceaccount pipeline -p '{"secrets": [{"name": "my-red-hat-account-p
 Once the secrets have been setup following the instructions of the previous points, all pipeline resources can be created easily with a single command. From the root directory of this repository, execute the following command:
 
 ```
-oc create -f ./tekton
+oc create -f ./customers-tomcat-gitops/tekton
 ```
 
 ### Running the Pipeline
@@ -125,7 +141,7 @@ Please give specifications for the workspace: ws
 ? Value of Claim Name : customers-pvc
 ```
 
-A pvc for the customers service has been provided in the Tekton configuration to avoid having to download dependencies on each run of the pipeline. The definition for this pvc is available in the *tekton* directory in this repository.
+A pvc for the customers service has been provided in the Tekton configuration to avoid having to download dependencies on each run of the pipeline. The definition for this pvc is also available in the *customers-tomcat-gitops/tekton* subdirectory in this repository.
 
 ## Application Configuration Model for GitOps
 
