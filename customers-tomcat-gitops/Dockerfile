@@ -1,3 +1,3 @@
-FROM registry.redhat.io/jboss-webserver-5/jws56-openjdk11-openshift-rhel8:5.6.1-2
+FROM image-registry.openshift-image-registry.svc:5000/openshift/jboss-webserver56-openjdk11-tomcat9-openshift-ubi8
 
 COPY target/*.war /deployments
